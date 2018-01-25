@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 import javax.swing.JOptionPane;
 
-public class ISUProgram extends javax.swing.JFrame {
+//A military tomagotchi simulator//
+//////////////////////////////////
 
+public class ISUProgram extends javax.swing.JFrame {
+    //Variables
     ArrayList list;
     ListIterator li;
     int cStaff, tStaff, GMP;
     MotherBase S;
 
+     //Default constructor
     public ISUProgram() {
         initComponents();
         list = new ArrayList();
@@ -21,6 +25,7 @@ public class ISUProgram extends javax.swing.JFrame {
         lblGMP.setText("$" + GMP);
     }
 
+   //Updates each label
     private void Update() {
         lbltStaff.setText("" + tStaff);
         lblcStaff.setText("" + cStaff);
@@ -221,7 +226,7 @@ public class ISUProgram extends javax.swing.JFrame {
 
         lblName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblName.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 37, 260, 20));
+        getContentPane().add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 180, 20));
 
         lblRank.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRank.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -257,7 +262,7 @@ public class ISUProgram extends javax.swing.JFrame {
         getContentPane().add(lblFA, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 131, 153, 30));
 
         lbldesc3.setText("Fighting Ability");
-        getContentPane().add(lbldesc3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 120, -1));
+        getContentPane().add(lbldesc3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 80, -1));
 
         mnuprogram.setText("Program");
 
@@ -367,16 +372,19 @@ public class ISUProgram extends javax.swing.JFrame {
             result += "Staff Member# " + (x + 1) + ":\n" + S.toString() + "\n";
         }
         JOptionPane.showMessageDialog(this, result);
+        //Gathers Name & Rank of each Staff Member in List and displays it
     }//GEN-LAST:event_mnushowallActionPerformed
 
     private void mnuexitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuexitActionPerformed
         System.exit(0);
+        //Exits program
     }//GEN-LAST:event_mnuexitActionPerformed
 
     private void mnuDischargeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDischargeActionPerformed
+        //Removes a Staff Member
         if (cStaff == 0) {
             return;
-        }
+        } //if current Staff is 0, don't remove
         li.next();
         li.remove();
         tStaff--;
@@ -398,13 +406,14 @@ public class ISUProgram extends javax.swing.JFrame {
             li.next();
             S = (MotherBase) li.previous();
         }
-        Update();
+        Update(); //Call to update labels after any change to a member
     }//GEN-LAST:event_mnuDischargeActionPerformed
 
     private void mnuBuyStealthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuBuyStealthActionPerformed
-        if (GMP >= 1000) {
+        //Buying A Stealth Operator
+        if (GMP >= 1000) { //Checks for sufficient funds
             String nm = JOptionPane.showInputDialog(this, "Enter First Name", "");
-            S = new Stealth(nm);
+            S = new Stealth(nm); //Tells it it's a stealth
             if (tStaff > 0) {
                 li.next();
             }
@@ -412,16 +421,16 @@ public class ISUProgram extends javax.swing.JFrame {
             li.previous();
             cStaff++;
             tStaff++;
-            GMP -= 1000;
-            Update();
-            lblMorale.setText("" + S.getMorale());
+            GMP -= 1000; //deduct cost
+            Update(); //upate
             JOptionPane.showMessageDialog(this, "Staff Purchased");
         } else {
-            JOptionPane.showMessageDialog(this, "Insufficient Funds");
+            JOptionPane.showMessageDialog(this, "Insufficient Funds"); //If gmp is below set amount
         }
     }//GEN-LAST:event_mnuBuyStealthActionPerformed
 
     private void btnfirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfirstActionPerformed
+        //Goes to first member in list
         if (cStaff == 1) {
             return;
         }
@@ -434,6 +443,7 @@ public class ISUProgram extends javax.swing.JFrame {
     }//GEN-LAST:event_btnfirstActionPerformed
 
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+        //Go back one in list
         if (cStaff == 1) {
             return;
         }
@@ -445,6 +455,7 @@ public class ISUProgram extends javax.swing.JFrame {
     }//GEN-LAST:event_btnbackActionPerformed
 
     private void btnnextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnextActionPerformed
+        //Go to next staff member
         if (cStaff == tStaff) {
             return;
         }
@@ -457,6 +468,7 @@ public class ISUProgram extends javax.swing.JFrame {
     }//GEN-LAST:event_btnnextActionPerformed
 
     private void btnlastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlastActionPerformed
+        //Goes to last staff member in list
         if (cStaff == tStaff) {
             return;
         }
@@ -469,9 +481,10 @@ public class ISUProgram extends javax.swing.JFrame {
     }//GEN-LAST:event_btnlastActionPerformed
 
     private void mnuBuySnipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuBuySnipeActionPerformed
-        if (GMP >= 1200) {
+        //Buying sniper operator, mostly same as stealth
+        if (GMP >= 1200) {//cost
             String nm = JOptionPane.showInputDialog(this, "Enter First Name", "");
-            S = new Sniper(nm);
+            S = new Sniper(nm); //Tell it it's a sniper
             if (tStaff > 0) {
                 li.next();
             }
@@ -488,26 +501,26 @@ public class ISUProgram extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuBuySnipeActionPerformed
 
     private void mnuEatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuEatActionPerformed
-        S.Eat();
-        JOptionPane.showMessageDialog(this, S.Name + " goes to the Mess Hall & Eats...\nMorale Up!\nHP Up!");
+        S.Eat(); //Calls Eating action
+        JOptionPane.showMessageDialog(this, S.Name + " goes to the Mess Hall & Eats...\nMorale Up!\nHP Up!"); //Displays message telling what levelled up
         Update();
     }//GEN-LAST:event_mnuEatActionPerformed
 
     private void mnuTrainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuTrainActionPerformed
-        S.Train();
+        S.Train(); //Same as above
         JOptionPane.showMessageDialog(this, S.Name + " Trains to improve their fighting skills\nMorale Up!\nFighting Ability Up!");
         Update();
     }//GEN-LAST:event_mnuTrainActionPerformed
 
     private void mnuMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuMissionActionPerformed
-        S.Mission();
-        if (S.WinLose == 1) {
+        S.Mission(); //Sending staff on missions
+        if (S.WinLose == 1) { //If they win, They level up
             JOptionPane.showMessageDialog(this, S.Name + " Completed the mission successfully!\nFighting Ability Up!\nMorale Up");
             Update();
-        } else if (S.WinLose == 2) {
+        } else if (S.WinLose == 2) {//If they lose, they get hurt
             JOptionPane.showMessageDialog(this, S.Name + " Has Failed the mission...\nMorale Down.\nHP Down.");
             Update();
-            if (S.HP == 0) {
+            if (S.HP == 0) { //If their hp reaches 0, they die, and are then removed just as if being discharged
                 JOptionPane.showMessageDialog(this, "Staff Member " + S.Name + " Has Died");
                 if (cStaff == 0) {
                     return;
@@ -540,7 +553,7 @@ public class ISUProgram extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuMissionActionPerformed
 
     private void mnuResearchSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuResearchSActionPerformed
-        try {
+        try { //Could not get to call rigt //Calls mehod exclusive to Stealth
             //S.SRnD();
             //JOptionPane.showMessageDialog(this, "Staff Member " + S.Name + " Researches Stealth Tactics\n Stealth Skill: " + Stealth.geSRnD());
         } catch (Exception e) {
@@ -549,7 +562,7 @@ public class ISUProgram extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuResearchSActionPerformed
 
     private void mnuResearchRFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuResearchRFActionPerformed
-        try {
+        try { //Same as above
             S = new Sniper();
             //S.RangeFinding();
             //JOptionPane.showMessageDialog(this, "Staff Member " + S.Name + " Researches Range Finding\n Range Finding Skill: " + Sniper.getRF());

@@ -4,21 +4,25 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Random;
 
+//Parent Class for sim
 public abstract class MotherBase implements Comparable {
 
+    //protected variables
     protected String CName, Name, Rank;
     protected int FA, Morale, HP, Cost, WinLose;
     Random rand = new Random();
 
+    //Real Constructor
     public MotherBase(String RN) {
-        pickCName();
-        Name += " " + RN;
-        FA = rand.nextInt(15) + 1;
-        rankCalc(FA);
+        pickCName(); //Picks random name attachement
+        Name += " " + RN; //attaches user input name 
+        FA = rand.nextInt(15) + 1; //Assigns random Fight Ability points 1-15
+        rankCalc(FA); //Recalculates rank for FA changes
         Morale = 10;
         HP = 10;
     }
 
+    //Default Constructor
     public MotherBase() {
         CName = "";
         Name = "";
@@ -29,27 +33,34 @@ public abstract class MotherBase implements Comparable {
 
     }
 
+    //Increases Fight Ability Points randomly between 1-10 points
     protected final int FAUp(int FA) {
         int FightA = FA;
         FightA += Math.random() * 10 + 1;
         return FightA;
     }
 
+    //Increases morale with RNG
     protected final void MoraleUp() {
         Morale += Math.random() * 5 + 1;
     }
 
+    //The Eating method, boosts stats by calling the 'Up' methods
     public final void Eat() {
         MoraleUp();
         HP++;
     }
-
+    
+    //Same as above but for training staff
     public final void Train() {
         FAUp(FA);
         rankCalc(FA);
         MoraleUp();
     }
 
+    //Send staff out on mission with RNG chance to win or lose
+    //winning gives benefits
+    //losing deducts
     public void Mission() {
         WinLose = rand.nextInt(2) + 1;
         if (WinLose == 1) { //Win Condition
@@ -62,6 +73,7 @@ public abstract class MotherBase implements Comparable {
         }
     }
 
+    //getters
     public String getName() {
         return Name;
     }
@@ -82,10 +94,12 @@ public abstract class MotherBase implements Comparable {
         return Morale;
     }
 
+    //ToString to displasy Name and Rank
     public String toString() {
         return "Name: " + Name + "\nRank: " + Rank + "\n========\n";
     }
 
+    //Calculates Rank based on Fight Ability points, checks if meets certain requirements
     protected void rankCalc(int FightAbility) {
         int FAB = FightAbility;
         if (FAB >= 1 && FAB <= 15) {
@@ -111,6 +125,7 @@ public abstract class MotherBase implements Comparable {
         }
     }
 
+    //Opens a txt file of names and randomly chooses one line to attach to staff name at initialize
     private void pickCName() {
         try {
             FileReader fr = new FileReader("C:\\Users\\tibbl\\Documents\\NetBeansProjects\\ISU\\ISU\\src\\Names.txt");
@@ -131,20 +146,6 @@ public abstract class MotherBase implements Comparable {
             CName = "FAILED";
         }
         Name = CName;
-        /*try {
-            FileReader fr = new FileReader("LastNames.txt");
-            BufferedReader br = new BufferedReader(fr);
-            String randName = "";
-            MotherBase S;
-            int n = rand.nextInt(605) + 1;
-            //Names.txt length is max
-            for (int i = 0; i < n; i++) {
-                randName = br.readLine();
-            }
-            br.close();
-            LName = randName;
-        } catch (Exception e) {
-        }*/
     }
 
 }
