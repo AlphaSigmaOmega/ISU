@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 
 //A military tomagotchi simulator//
 //////////////////////////////////
-
+//GUI PROGRAM
 public class ISUProgram extends javax.swing.JFrame {
     //Variables
     ArrayList list;

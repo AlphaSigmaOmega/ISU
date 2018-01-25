@@ -94,7 +94,7 @@ public abstract class MotherBase implements Comparable {
         return Morale;
     }
 
-    //ToString to displasy Name and Rank
+    //ToString to displasy Name and Rank, used in gui to show all staff
     public String toString() {
         return "Name: " + Name + "\nRank: " + Rank + "\n========\n";
     }
@@ -102,7 +102,7 @@ public abstract class MotherBase implements Comparable {
     //Calculates Rank based on Fight Ability points, checks if meets certain requirements
     protected void rankCalc(int FightAbility) {
         int FAB = FightAbility;
-        if (FAB >= 1 && FAB <= 15) {
+        if (FAB >= 1 && FAB <= 15) { //if points in between # & #, rank is...
             Rank = "E";
         } else if (FAB >= 16 && FAB <= 31) {
             Rank = "D";
@@ -128,7 +128,7 @@ public abstract class MotherBase implements Comparable {
     //Opens a txt file of names and randomly chooses one line to attach to staff name at initialize
     private void pickCName() {
         try {
-            FileReader fr = new FileReader("C:\\Users\\tibbl\\Documents\\NetBeansProjects\\ISU\\ISU\\src\\Names.txt");
+            FileReader fr = new FileReader("T:\\ISS-ICS4U1-1\\john7770\\Unit-005\\ISU\\ISU\\ISU\\src\\Names.txt");
             //having problems finding file with FileReader, can't just find "Names.txt"
             //but does work with direct file path
             BufferedReader br = new BufferedReader(fr);
