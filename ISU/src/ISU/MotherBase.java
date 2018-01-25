@@ -1,3 +1,4 @@
+package ISU;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -5,74 +6,87 @@ import java.util.Random;
 
 public abstract class MotherBase implements Comparable {
 
-    protected String CName,Name,Rank;
+    protected String CName, Name, Rank;
     protected int FA, Morale, HP, Cost, WinLose;
-    private Random rand = new Random();
+    Random rand = new Random();
 
     public MotherBase(String RN) {
         pickCName();
         Name += " " + RN;
         FA = rand.nextInt(15) + 1;
         rankCalc(FA);
-        int Morale = 10;
-        HP=10;
-        }
-    
-    public MotherBase(){
-        CName="";
-        Name="";
-        Rank="";
-        FA=0;
-        Morale=0;
-        HP=0;
-        
+        Morale = 10;
+        HP = 10;
+    }
+
+    public MotherBase() {
+        CName = "";
+        Name = "";
+        Rank = "";
+        FA = 0;
+        Morale = 0;
+        HP = 0;
+
     }
 
     protected final int FAUp(int FA) {
-        int FightA=FA;
-        FightA+=Math.random()*10+1;
+        int FightA = FA;
+        FightA += Math.random() * 10 + 1;
         return FightA;
     }
-    protected final int MoraleUp(int Morale){
-        int MO=Morale;
-        MO+=Math.random()*5+1;
-        return MO;
+
+    protected final void MoraleUp() {
+        Morale += Math.random() * 5 + 1;
     }
 
     public final void Eat() {
-        MoraleUp(Morale);
+        MoraleUp();
         HP++;
     }
 
     public final void Train() {
         FAUp(FA);
         rankCalc(FA);
-        MoraleUp(Morale);
+        MoraleUp();
     }
-    public String getName(){
+
+    public void Mission() {
+        WinLose = rand.nextInt(2) + 1;
+        if (WinLose == 1) { //Win Condition
+            FAUp(FA);
+            rankCalc(FA);
+            MoraleUp();
+        } else if (WinLose == 2) { //Lose Condition
+            Morale -= 5;
+            HP--;
+        }
+    }
+
+    public String getName() {
         return Name;
     }
-    public String getRank(){
+
+    public String getRank() {
         return Rank;
     }
-    public String getFA(){
-        String F = String.valueOf(FA);
-        return F;
+
+    public int getFA() {
+        return FA;
     }
-    public String getHP(){
-        String H = String.valueOf(HP);
-        return H;
+
+    public int getHP() {
+        return HP;
     }
-    public String getMorale(){
-        String M = String.valueOf(Morale);
-        return M;
+
+    public int getMorale() {
+        return Morale;
     }
-    
-    public String toString(){
+
+    public String toString() {
         return "Name: " + Name + "\nRank: " + Rank + "\n========\n";
     }
-   
-     protected void rankCalc(int FightAbility) {
+
+    protected void rankCalc(int FightAbility) {
         int FAB = FightAbility;
         if (FAB >= 1 && FAB <= 15) {
             Rank = "E";
@@ -96,12 +110,15 @@ public abstract class MotherBase implements Comparable {
             Rank = "S++";
         }
     }
-    
+
     private void pickCName() {
         try {
-            FileReader fr = new FileReader("FirstNames.txt");
+            FileReader fr = new FileReader("C:\\Users\\tibbl\\Documents\\NetBeansProjects\\ISU\\ISU\\src\\Names.txt");
+            //having problems finding file with FileReader, can't just find "Names.txt"
+            //but does work with direct file path
             BufferedReader br = new BufferedReader(fr);
             String randName = "";
+            System.out.println(randName);
             MotherBase S;
             int n = rand.nextInt(210) + 1;
             //Names.txt length is max
@@ -111,6 +128,7 @@ public abstract class MotherBase implements Comparable {
             br.close();
             CName = randName;
         } catch (Exception e) {
+            CName = "FAILED";
         }
         Name = CName;
         /*try {
@@ -129,22 +147,4 @@ public abstract class MotherBase implements Comparable {
         }*/
     }
 
-    private void pickRank() {
-        try {
-            FileReader fr = new FileReader("RankList.txt");
-            BufferedReader br = new BufferedReader(fr);
-            String randName = "";
-            MotherBase S;
-            int n = rand.nextInt(10) + 1;
-            //Names.txt length is max
-            for (int i = 0; i < n; i++) {
-                randName = br.readLine();
-            }
-            br.close();
-            Rank = randName;
-        } catch (Exception e) {
-        }
-    }
-
-   
 }

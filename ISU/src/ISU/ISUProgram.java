@@ -1,3 +1,5 @@
+package ISU;
+
 import java.util.ArrayList;
 import java.util.ListIterator;
 import javax.swing.JOptionPane;
@@ -6,7 +8,7 @@ public class ISUProgram extends javax.swing.JFrame {
 
     ArrayList list;
     ListIterator li;
-    int cStaff, tStaff;
+    int cStaff, tStaff, GMP;
     MotherBase S;
 
     public ISUProgram() {
@@ -15,6 +17,19 @@ public class ISUProgram extends javax.swing.JFrame {
         li = list.listIterator();
         cStaff = 0;
         tStaff = 0;
+        GMP = 2200;
+        lblGMP.setText("$" + GMP);
+    }
+
+    private void Update() {
+        lbltStaff.setText("" + tStaff);
+        lblcStaff.setText("" + cStaff);
+        lblName.setText("" + S.getName());
+        lblRank.setText("" + S.getRank());
+        lblFA.setText("" + S.getFA());
+        lblHP.setText("" + S.getHP());
+        lblMorale.setText("" + S.getMorale());
+        lblGMP.setText("$" + GMP);
     }
 
     @SuppressWarnings("unchecked")
@@ -51,17 +66,25 @@ public class ISUProgram extends javax.swing.JFrame {
         mnushowall = new javax.swing.JMenuItem();
         mnuexit = new javax.swing.JMenuItem();
         mnuinsert = new javax.swing.JMenu();
-        mnuinsertafter = new javax.swing.JMenuItem();
+        mnuBuyStealth = new javax.swing.JMenuItem();
+        mnuBuySnipe = new javax.swing.JMenuItem();
         mnuedit = new javax.swing.JMenu();
-        mnureplace = new javax.swing.JMenuItem();
         mnuDischarge = new javax.swing.JMenuItem();
-        mnuclear = new javax.swing.JMenuItem();
+        mnuOp = new javax.swing.JMenu();
+        mnuEat = new javax.swing.JMenuItem();
+        mnuTrain = new javax.swing.JMenuItem();
+        mnuMission = new javax.swing.JMenuItem();
+        mnuResearchS = new javax.swing.JMenuItem();
+        mnuResearchRF = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblname.setText("Name");
+        getContentPane().add(lblname, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 16, -1, -1));
 
         lbldesc.setText("Rank");
+        getContentPane().add(lbldesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, -1, -1));
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -98,11 +121,11 @@ public class ISUProgram extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addComponent(btnfirst)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnback)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(btnnext)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnlast)
@@ -119,6 +142,8 @@ public class ISUProgram extends javax.swing.JFrame {
                     .addComponent(btnfirst))
                 .addGap(17, 17, 17))
         );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 383, -1, 48));
 
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -171,9 +196,9 @@ public class ISUProgram extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -184,36 +209,55 @@ public class ISUProgram extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)))
                 .addGap(115, 115, 115))
         );
 
-        lblName.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 326, -1, 39));
 
+        lblName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblName.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 37, 260, 20));
+
+        lblRank.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRank.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(lblRank, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 89, 153, 20));
 
         lbldesc1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbldesc1.setText("HP");
+        getContentPane().add(lbldesc1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 22, -1));
 
+        lblHP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHP.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(lblHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 187, 153, 30));
 
         lbldesc2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbldesc2.setText("Morale");
+        getContentPane().add(lbldesc2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, -1, -1));
 
+        lblMorale.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMorale.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(lblMorale, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 239, 153, 30));
 
         jLabel3.setText("GMP:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 302, -1, -1));
 
         jLabel4.setText("Resources");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 273, -1, -1));
 
         lblGMP.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(lblGMP, new org.netbeans.lib.awtextra.AbsoluteConstraints(183, 302, 70, 20));
 
+        lblFA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFA.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(lblFA, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 131, 153, 30));
 
         lbldesc3.setText("Fighting Ability");
+        getContentPane().add(lbldesc3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 120, -1));
 
         mnuprogram.setText("Program");
 
@@ -237,25 +281,25 @@ public class ISUProgram extends javax.swing.JFrame {
 
         mnuinsert.setText("Purchase Staff");
 
-        mnuinsertafter.setText("After Current Task");
-        mnuinsertafter.addActionListener(new java.awt.event.ActionListener() {
+        mnuBuyStealth.setText("Purchase Stealth Operator -$1000 GMP");
+        mnuBuyStealth.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuinsertafterActionPerformed(evt);
+                mnuBuyStealthActionPerformed(evt);
             }
         });
-        mnuinsert.add(mnuinsertafter);
+        mnuinsert.add(mnuBuyStealth);
+
+        mnuBuySnipe.setText("Purchase Sniper Operator - $1200 GMP");
+        mnuBuySnipe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuBuySnipeActionPerformed(evt);
+            }
+        });
+        mnuinsert.add(mnuBuySnipe);
 
         jMenuBar1.add(mnuinsert);
 
-        mnuedit.setText("Edit");
-
-        mnureplace.setText("Replace This as Current Task");
-        mnureplace.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnureplaceActionPerformed(evt);
-            }
-        });
-        mnuedit.add(mnureplace);
+        mnuedit.setText("Discharge");
 
         mnuDischarge.setText("Discharge Staff Member");
         mnuDischarge.addActionListener(new java.awt.event.ActionListener() {
@@ -265,107 +309,53 @@ public class ISUProgram extends javax.swing.JFrame {
         });
         mnuedit.add(mnuDischarge);
 
-        mnuclear.setText("Clear Screen");
-        mnuclear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuclearActionPerformed(evt);
-            }
-        });
-        mnuedit.add(mnuclear);
-
         jMenuBar1.add(mnuedit);
 
-        setJMenuBar(jMenuBar1);
+        mnuOp.setText("Operations");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(0, 0, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(12, 12, 12)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(99, 99, 99)
-                                .addComponent(jLabel4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(82, 82, 82)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblGMP, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblFA, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(lblname)
-                                                .addComponent(lbldesc))
-                                            .addGap(54, 54, 54))
-                                        .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblHP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblMorale, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblRank, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                        .addGap(77, 77, 77))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lbldesc1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(136, 136, 136))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lbldesc2)
-                                .addGap(130, 130, 130)))))
-                .addGap(24, 24, 24))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbldesc3)
-                .addGap(137, 137, 137))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblname)
-                .addGap(1, 1, 1)
-                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbldesc)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblRank, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbldesc3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblFA, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbldesc1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblHP, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbldesc2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblMorale, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(lblGMP, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(4, 4, 4)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        mnuEat.setText("Eat at Mess Hall");
+        mnuEat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuEatActionPerformed(evt);
+            }
+        });
+        mnuOp.add(mnuEat);
+
+        mnuTrain.setText("Train Staff Member");
+        mnuTrain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuTrainActionPerformed(evt);
+            }
+        });
+        mnuOp.add(mnuTrain);
+
+        mnuMission.setText("Send on Mission");
+        mnuMission.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuMissionActionPerformed(evt);
+            }
+        });
+        mnuOp.add(mnuMission);
+
+        mnuResearchS.setText("Research Stealth - STEALTH ONLY");
+        mnuResearchS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuResearchSActionPerformed(evt);
+            }
+        });
+        mnuOp.add(mnuResearchS);
+
+        mnuResearchRF.setText("Research Range finding - SNIPER ONLY");
+        mnuResearchRF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuResearchRFActionPerformed(evt);
+            }
+        });
+        mnuOp.add(mnuResearchRF);
+
+        jMenuBar1.add(mnuOp);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -382,24 +372,6 @@ public class ISUProgram extends javax.swing.JFrame {
     private void mnuexitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuexitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_mnuexitActionPerformed
-
-    private void mnureplaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnureplaceActionPerformed
-        if (tottask == 0) {
-            JOptionPane.showMessageDialog(this, "No task to replace this with, use Insert instead");
-            return;
-        }
-        String nm = txtname.getText();
-        String d = txtdesc.getText();
-        Task t = new Task(nm, d);
-        if (t.validate() == false) {
-            JOptionPane.showMessageDialog(this, "Error - Must enter all information");
-            return;
-        }
-        li.next();
-        li.set(t);
-        li.previous();
-            JOptionPane.showMessageDialog(this, "Replace Successful");
-    }//GEN-LAST:event_mnureplaceActionPerformed
 
     private void mnuDischargeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDischargeActionPerformed
         if (cStaff == 0) {
@@ -419,46 +391,35 @@ public class ISUProgram extends javax.swing.JFrame {
             lblcStaff.setText("n/a");
             return;
         } else if (cStaff > 1) {
-            S =(MotherBase)li.previous();
+            S = (MotherBase) li.previous();
             cStaff--;
             lblcStaff.setText("" + cStaff);
         } else {
             li.next();
-            S =(MotherBase)li.previous();
+            S = (MotherBase) li.previous();
         }
-
-        lblName.setText(S.getName());
-        lblRank.setText(S.getRank());
-        lblFA.setText(S.getFA());
-        lblHP.setText(S.getRank());
-        lblMorale.setText(S.getRank());
+        Update();
     }//GEN-LAST:event_mnuDischargeActionPerformed
 
-    private void mnuclearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuclearActionPerformed
-        txtname.setText("");
-        txtdesc.setText("");
-    }//GEN-LAST:event_mnuclearActionPerformed
-
-    private void mnuinsertafterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuinsertafterActionPerformed
-        
-        String nm = txtName.getText();
-        String d = txtdesc.getText();
-        MotherBase S = new MotherBase(nm, d);
-        if (S.validate() == false) {
-            JOptionPane.showMessageDialog(this, "Error - Must enter all information");
-            return;
+    private void mnuBuyStealthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuBuyStealthActionPerformed
+        if (GMP >= 1000) {
+            String nm = JOptionPane.showInputDialog(this, "Enter First Name", "");
+            S = new Stealth(nm);
+            if (tStaff > 0) {
+                li.next();
+            }
+            li.add(S);
+            li.previous();
+            cStaff++;
+            tStaff++;
+            GMP -= 1000;
+            Update();
+            lblMorale.setText("" + S.getMorale());
+            JOptionPane.showMessageDialog(this, "Staff Purchased");
+        } else {
+            JOptionPane.showMessageDialog(this, "Insufficient Funds");
         }
-        if (tStaff > 0) {
-            li.next();
-        }
-        li.add(t);
-        li.previous();
-        cStaff++;
-        tStaff++;
-        lbltStaff.setText("" + tStaff);
-        lblcStaff.setText("" + cStaff);
-        JOptionPane.showMessageDialog(this, "Task Added");
-    }//GEN-LAST:event_mnuinsertafterActionPerformed
+    }//GEN-LAST:event_mnuBuyStealthActionPerformed
 
     private void btnfirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfirstActionPerformed
         if (cStaff == 1) {
@@ -467,14 +428,9 @@ public class ISUProgram extends javax.swing.JFrame {
         while (li.hasPrevious()) {
             S = (MotherBase) li.previous();
         }
-        
+
         cStaff = 1;
-        lblcStaff.setText("" + cStaff);
-        lblName.setText(S.getName());
-        lblRank.setText(S.getRank());
-        lblFA.setText(S.getFA());
-        lblHP.setText(S.getRank());
-        lblMorale.setText(S.getRank());
+        Update();
     }//GEN-LAST:event_btnfirstActionPerformed
 
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
@@ -483,13 +439,9 @@ public class ISUProgram extends javax.swing.JFrame {
         }
         cStaff--;
         lblcStaff.setText("" + cStaff);
-        
-        S = (MotherBase)  li.previous();
-        lblName.setText(S.getName());
-        lblRank.setText(S.getRank());
-        lblFA.setText(S.getFA());
-        lblHP.setText(S.getRank());
-        lblMorale.setText(S.getRank());
+
+        S = (MotherBase) li.previous();
+        Update();
     }//GEN-LAST:event_btnbackActionPerformed
 
     private void btnnextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnextActionPerformed
@@ -501,11 +453,7 @@ public class ISUProgram extends javax.swing.JFrame {
         li.next();
         li.next();
         S = (MotherBase) li.previous();
-        lblName.setText(S.getName());
-        lblRank.setText(S.getRank());
-        lblFA.setText(S.getFA());
-        lblHP.setText(S.getRank());
-        lblMorale.setText(S.getRank());
+        Update();
     }//GEN-LAST:event_btnnextActionPerformed
 
     private void btnlastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlastActionPerformed
@@ -517,13 +465,98 @@ public class ISUProgram extends javax.swing.JFrame {
         }
         S = (MotherBase) li.previous();
         cStaff = tStaff;
-        lblcStaff.setText("" + cStaff);
-        lblName.setText(S.getName());
-        lblRank.setText(S.getRank());
-        lblFA.setText(S.getFA());
-        lblHP.setText(S.getRank());
-        lblMorale.setText(S.getRank());
+        Update();
     }//GEN-LAST:event_btnlastActionPerformed
+
+    private void mnuBuySnipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuBuySnipeActionPerformed
+        if (GMP >= 1200) {
+            String nm = JOptionPane.showInputDialog(this, "Enter First Name", "");
+            S = new Sniper(nm);
+            if (tStaff > 0) {
+                li.next();
+            }
+            li.add(S);
+            li.previous();
+            cStaff++;
+            tStaff++;
+            GMP -= 1200;
+            Update();
+            JOptionPane.showMessageDialog(this, "Staff Purchased");
+        } else {
+            JOptionPane.showMessageDialog(this, "Insufficient Funds");
+        }
+    }//GEN-LAST:event_mnuBuySnipeActionPerformed
+
+    private void mnuEatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuEatActionPerformed
+        S.Eat();
+        JOptionPane.showMessageDialog(this, S.Name + " goes to the Mess Hall & Eats...\nMorale Up!\nHP Up!");
+        Update();
+    }//GEN-LAST:event_mnuEatActionPerformed
+
+    private void mnuTrainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuTrainActionPerformed
+        S.Train();
+        JOptionPane.showMessageDialog(this, S.Name + " Trains to improve their fighting skills\nMorale Up!\nFighting Ability Up!");
+        Update();
+    }//GEN-LAST:event_mnuTrainActionPerformed
+
+    private void mnuMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuMissionActionPerformed
+        S.Mission();
+        if (S.WinLose == 1) {
+            JOptionPane.showMessageDialog(this, S.Name + " Completed the mission successfully!\nFighting Ability Up!\nMorale Up");
+            Update();
+        } else if (S.WinLose == 2) {
+            JOptionPane.showMessageDialog(this, S.Name + " Has Failed the mission...\nMorale Down.\nHP Down.");
+            Update();
+            if (S.HP == 0) {
+                JOptionPane.showMessageDialog(this, "Staff Member " + S.Name + " Has Died");
+                if (cStaff == 0) {
+                    return;
+                }
+                li.next();
+                li.remove();
+                tStaff--;
+                lbltStaff.setText("" + tStaff);
+                if (tStaff == 0) {
+                    lblName.setText("");
+                    lblRank.setText("");
+                    lblFA.setText("");
+                    lblHP.setText("");
+                    lblMorale.setText("");
+                    cStaff = 0;
+                    lblcStaff.setText("n/a");
+                    return;
+                } else if (cStaff > 1) {
+                    S = (MotherBase) li.previous();
+                    cStaff--;
+                    lblcStaff.setText("" + cStaff);
+                } else {
+                    li.next();
+                    S = (MotherBase) li.previous();
+                }
+                Update();
+            }
+
+        }
+    }//GEN-LAST:event_mnuMissionActionPerformed
+
+    private void mnuResearchSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuResearchSActionPerformed
+        try {
+            //S.SRnD();
+            //JOptionPane.showMessageDialog(this, "Staff Member " + S.Name + " Researches Stealth Tactics\n Stealth Skill: " + Stealth.geSRnD());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Staff Member " + S.Name + " Is not A Stealth Class.");
+        }
+    }//GEN-LAST:event_mnuResearchSActionPerformed
+
+    private void mnuResearchRFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuResearchRFActionPerformed
+        try {
+            S = new Sniper();
+            //S.RangeFinding();
+            //JOptionPane.showMessageDialog(this, "Staff Member " + S.Name + " Researches Range Finding\n Range Finding Skill: " + Sniper.getRF());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Staff Member " + S.Name + " Is not A Sniper Class.");
+        }
+    }//GEN-LAST:event_mnuResearchRFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -588,14 +621,19 @@ public class ISUProgram extends javax.swing.JFrame {
     private javax.swing.JLabel lbldesc3;
     private javax.swing.JLabel lblname;
     private javax.swing.JLabel lbltStaff;
+    private javax.swing.JMenuItem mnuBuySnipe;
+    private javax.swing.JMenuItem mnuBuyStealth;
     private javax.swing.JMenuItem mnuDischarge;
-    private javax.swing.JMenuItem mnuclear;
+    private javax.swing.JMenuItem mnuEat;
+    private javax.swing.JMenuItem mnuMission;
+    private javax.swing.JMenu mnuOp;
+    private javax.swing.JMenuItem mnuResearchRF;
+    private javax.swing.JMenuItem mnuResearchS;
+    private javax.swing.JMenuItem mnuTrain;
     private javax.swing.JMenu mnuedit;
     private javax.swing.JMenuItem mnuexit;
     private javax.swing.JMenu mnuinsert;
-    private javax.swing.JMenuItem mnuinsertafter;
     private javax.swing.JMenu mnuprogram;
-    private javax.swing.JMenuItem mnureplace;
     private javax.swing.JMenuItem mnushowall;
     // End of variables declaration//GEN-END:variables
 }
